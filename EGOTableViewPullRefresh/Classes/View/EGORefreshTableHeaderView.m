@@ -42,61 +42,61 @@
 
 - (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor  {
     if((self = [super initWithFrame:frame])) {
-		
-		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
-
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
-		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		label.font = [UIFont systemFontOfSize:12.0f];
-		label.textColor = textColor;
-		label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		label.backgroundColor = [UIColor clearColor];
-		label.textAlignment = NSTextAlignmentCenter;
-		[self addSubview:label];
-		_lastUpdatedLabel=label;
-		[label release];
-		
-		label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
-		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		label.font = [UIFont boldSystemFontOfSize:13.0f];
-		label.textColor = textColor;
-		label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		label.backgroundColor = [UIColor clearColor];
-		label.textAlignment = NSTextAlignmentCenter;
-		[self addSubview:label];
-		_statusLabel=label;
-		[label release];
-		
-		CALayer *layer = [CALayer layer];
-		layer.frame = CGRectMake(25.0f, frame.size.height - 65.0f, 30.0f, 55.0f);
-		layer.contentsGravity = kCAGravityResizeAspect;
-		layer.contents = (id)[UIImage imageNamed:arrow].CGImage;
-		
+        
+        self.autoresizingMask = UIViewAutoresizingNone;
+        self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
+        label.autoresizingMask = UIViewAutoresizingNone;
+        label.font = [UIFont systemFontOfSize:12.0f];
+        label.textColor = textColor;
+        label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+        label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = UITextAlignmentCenter;
+        [self addSubview:label];
+        _lastUpdatedLabel=label;
+        [label release];
+        
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
+        label.autoresizingMask = UIViewAutoresizingNone;
+        label.font = [UIFont boldSystemFontOfSize:13.0f];
+        label.textColor = textColor;
+        label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+        label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = UITextAlignmentCenter;
+        [self addSubview:label];
+        _statusLabel=label;
+        [label release];
+        
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(25.0f, frame.size.height - 65.0f, 30.0f, 55.0f);
+        layer.contentsGravity = kCAGravityResizeAspect;
+        layer.contents = (id)[UIImage imageNamed:arrow].CGImage;
+        
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
-		if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-			layer.contentsScale = [[UIScreen mainScreen] scale];
-		}
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+            layer.contentsScale = [[UIScreen mainScreen] scale];
+        }
 #endif
-		
-		[[self layer] addSublayer:layer];
-		_arrowImage=layer;
-		
-		UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-		view.frame = CGRectMake(25.0f, frame.size.height - 38.0f, 20.0f, 20.0f);
-		[self addSubview:view];
-		_activityView = view;
-		[view release];
-		
-		
-		[self setState:EGOOPullRefreshNormal];
-		
+        
+        [[self layer] addSublayer:layer];
+        _arrowImage=layer;
+        
+        UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        view.frame = CGRectMake(25.0f, frame.size.height - 38.0f, 20.0f, 20.0f);
+        [self addSubview:view];
+        _activityView = view;
+        [view release];
+        
+        
+        [self setState:EGOOPullRefreshNormal];
+        
     }
-	
+    
     return self;
-	
+    
 }
 
 - (id)initWithFrame:(CGRect)frame  {
